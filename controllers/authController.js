@@ -1,6 +1,6 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const _ = require('lodash');
+const lo = require('lodash');
 const userQueries = require('../databaseRequests/user.queries.js');
 
 const saltRounds = 10;
@@ -81,7 +81,7 @@ const login = async (req,res) => {
  //Look for a record in database compare it to req.body.username
     //Get the object from PostGRES if it exists compare the password if not return error
     //if user return re
-    const userName = _.toLower(req.body.username).replaceAll(' ','');
+    const userName = lo.toLower(req.body.username);
 
     //Find out if the userame exists in the Database already after removing spaces and toLower
     //ToDO get some login attempts and lockout action going
