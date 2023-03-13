@@ -1,6 +1,6 @@
 const taskQueries = require('../databaseRequests/task.queries.js');
 const {Translate} = require('@google-cloud/translate').v2;
-
+require('dotenv').config();
 
 
 const target = "ja";
@@ -11,10 +11,10 @@ const target = "ja";
 //This is a PATCH request
 
 const creds = JSON.parse(process.env.GOOGLE_CREDS);
-
+console.log(creds);
 const translate = new Translate({
-  projectId: process.env.GOOGLE_PROJECT_ID,
-  credentials: creds
+  credentials: creds,
+  projectId: process.env.GOOGLE_PROJECT_ID
  });
 
 const translateText = async (req,res) =>  {
@@ -30,7 +30,7 @@ const translateText = async (req,res) =>  {
           //Google API costs money don't want to make empty requests to translate.
           //Do a Guard for Null or empty text
           const taskText =foundTask.taskName.trim();
-
+          console.log(taskText);
         if(taskText.length <= 0 ){
           res.status(400).json({
             code: 400,
