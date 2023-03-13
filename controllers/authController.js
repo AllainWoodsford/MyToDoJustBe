@@ -7,7 +7,7 @@ const saltRounds = 10;
 //Register User
 const register = async (req, res) => {
     try {
-        const userName = _.toLower(req.body.username).replaceAll(' ','');
+        const userName = lo.toLower(req.body.username).replaceAll(' ','');
         const password = req.body.password;
 
         //Find out if the userame exists in the Database already after removing spaces and toLower
