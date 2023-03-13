@@ -41,6 +41,7 @@ const translateText = async (req,res) =>  {
             if(foundTask.isTranslated){
               //We've got a task we should check if its already translated
               res.status(400).json({
+                code: 400,
                 message: 'Task is already translated'
               });
             } else {
