@@ -9,6 +9,14 @@ const target = "ja";
   //id = taskID in database
   //}
 //This is a PATCH request
+
+const creds = JSON.parse(process.env.GOOGLE_CREDS);
+
+const translate = new Translate({
+  projectId: process.env.GOOGLE_PROJECT_ID,
+  credentials: creds
+ });
+
 const translateText = async (req,res) =>  {
   try {
       console.log('attempt translate');
@@ -40,9 +48,7 @@ const translateText = async (req,res) =>  {
               //At this point we have an untranslated task, that's not empty
                //We want to trim white spaces because they charge per character
                //this returns an array we just need 1 string
-               const translate = new Translate({
-                projectId: process.env.GOOGLE_PROJECT_ID
-               });
+           
                console.log('attempt translate');
               const translatedText =  await translate.translate(taskText,target);
               console.log(tasktext + "/" + target);
