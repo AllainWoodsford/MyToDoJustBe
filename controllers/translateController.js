@@ -1,6 +1,6 @@
 const taskQueries = require('../databaseRequests/task.queries.js');
 const {Translate} = require('@google-cloud/translate').v2;
-const translate = new Translate();
+
 
 
 const target = "ja";
@@ -40,6 +40,9 @@ const translateText = async (req,res) =>  {
               //At this point we have an untranslated task, that's not empty
                //We want to trim white spaces because they charge per character
                //this returns an array we just need 1 string
+               const translate = new Translate({
+                projectId: process.env.GOOGLE_PROJECT_ID
+               });
                console.log('attempt translate');
               const translatedText =  await translate.translate(taskText,target);
               console.log(tasktext + "/" + target);
