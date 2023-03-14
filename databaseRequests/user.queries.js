@@ -59,7 +59,7 @@ class UserQueries {
                 createdDate: data.timeStamp,
                 translationDefault: data.translationDefault,
                 translationTarget: data.translationTarget,
-                adminFlag: 1//data.adminFlag
+                adminFlag: data.adminFlag
             });
 
             if(newUser) {
